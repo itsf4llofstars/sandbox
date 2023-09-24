@@ -25,14 +25,27 @@ def copy_file(filename, destination, copy_type=None) -> None:
         shutil.copy2(filename, destination)
 
 
+def move_file(filename, destination) -> None:
+    """Delete a file. Requires import os
+
+    Args:
+        filename: The path and name of the orig file
+        destination: The path and name of the dest file
+    """
+    try:
+        if os.path.exists(destination):
+            print("This file exists at the destination")
+        else:
+            os.replace(filename, destination)
+    except FileNotFoundError:
+        raise FileNotFoundError("File was not found")
+
+
 def main():
-    files_name = "lorem.txt"
-    files_dest = "lorem_copy.txt"
+    move_from = os.path.expanduser(os.path.join("~", "ed", "lorem.txt"))
+    move_to = os.path.expanduser(os.path.join("~", "notes", "lorem_moved.txt"))
 
-    name = os.path.expanduser(os.path.join("~", "notes", files_name))
-    dest = os.path.expanduser(os.path.join("~", "ed"))
-
-    copy_file(name, dest, 2)
+    move_file(move_from, move_to)
 
 
 if __name__ == "__main__":
