@@ -5,10 +5,11 @@ documentation on files/scripts can also be created here.
 
 ## Contents
 
-1. Copy Files
-2. Move Files
+1. Copy File
+2. Move File
+3. Delete File
 
-### Copy Files
+### Copy File
 
 ```python3
 def copy_file(filename, destination, copy_type=None) -> None:
@@ -30,7 +31,7 @@ def copy_file(filename, destination, copy_type=None) -> None:
         shutil.copy2(filename, destination)
 ```
 
-### Move Files
+### Move File
 
 Can be used to move a folder by omitting filename data.
 
@@ -47,6 +48,21 @@ def move_file(filename, destination) -> None:
             print("This file exists at the destination")
         else:
             os.replace(filename, destination)
+    except FileNotFoundError as fnfe:
+        raise FileNotFoundError("File was not found") from fnfe
+```
+
+### Delete File
+
+```python3
+def delete_file(filename) -> None:
+    """Delete a file. Requires import os
+
+    Args:
+        filename (None): path and filename of the file
+    """
+    try:
+        os.remove(filename)
     except FileNotFoundError as fnfe:
         raise FileNotFoundError("File was not found") from fnfe
 ```
