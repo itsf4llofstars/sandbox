@@ -47,6 +47,6 @@ def move_file(filename, destination) -> None:
             print("This file exists at the destination")
         else:
             os.replace(filename, destination)
-    except FileNotFoundError:
-        raise FileNotFoundError("File was not found")
+    except FileNotFoundError as fnfe:
+        raise FileNotFoundError("File was not found") from fnfe
 ```

@@ -37,15 +37,24 @@ def move_file(filename, destination) -> None:
             print("This file exists at the destination")
         else:
             os.replace(filename, destination)
-    except FileNotFoundError:
-        raise FileNotFoundError("File was not found")
+    except FileNotFoundError as fnfe:
+        raise FileNotFoundError("File was not found") from fnfe
+
+
+def delete_file(filename) -> None:
+    """Delete a file. Requires import os
+
+    Args:
+        filename (None): path and filename of the file
+    """
+    try:
+        os.remove(filename)
+    except FileNotFoundError as fnfe:
+        raise FileNotFoundError("File was not found") from fnfe
 
 
 def main():
-    move_from = os.path.expanduser(os.path.join("~", "ed", "lorem.txt"))
-    move_to = os.path.expanduser(os.path.join("~", "notes", "lorem_moved.txt"))
-
-    move_file(move_from, move_to)
+    delete_file(os.path.expanduser(os.path.join("~", "notes", "lorem_moved.txt")))
 
 
 if __name__ == "__main__":
