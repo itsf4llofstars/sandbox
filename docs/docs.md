@@ -32,6 +32,8 @@ def copy_file(filename, destination, copy_type=None) -> None:
 
 ### Move Files
 
+Can be used to move a folder by omitting filename data.
+
 ```python3
 def move_file(filename, destination) -> None:
     """Delete a file. Requires import os
