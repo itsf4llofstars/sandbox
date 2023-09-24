@@ -7,6 +7,7 @@ Desc: The main.py file for the Python Sandbox
 
 
 def main():
+    print("Hello, world!")
 
 
 if __name__ == "__main__":
